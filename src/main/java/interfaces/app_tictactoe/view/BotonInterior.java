@@ -3,10 +3,12 @@ package interfaces.app_tictactoe.view;
 import javax.swing.*;
 import java.awt.*;
 
+// Botón usado para representar una celda del tablero en la UI.
 public class BotonInterior extends JButton {
     private int fila;
-    private int columna; 
+    private int columna;
 
+    // Crea un botón de celda con posición y tema (claro/oscuro).
     BotonInterior(int fila, int columna, String tema) {
         this.fila = fila;
         this.columna = columna;
@@ -27,12 +29,13 @@ public class BotonInterior extends JButton {
         }
     }
 
-    // Getters para que el controlador sepa qué botón se pulsó
+    // Devuelve la fila (0-based) del botón.
     public int getFila() {
         return fila;
     }
 
+    // Devuelve la columna (0-based) del botón.
     public int getColumna() {
-        return columna; 
+        return columna;
     }
 }

@@ -1,9 +1,11 @@
 package interfaces.app_tictactoe.model;
 
+// Representa una coordenada (fila, columna) válida en el tablero.
 public class Coordenada {
     int columna;
     int fila;
     
+    // Crea y valida una coordenada dentro del tamaño del tablero.
     public Coordenada(int columna, int fila, int tamanio) throws Exception {
         this.columna = columna;
         this.fila = fila;
@@ -12,11 +14,13 @@ public class Coordenada {
         }
     }
 
+    // Devuelve la columna (1-based).
     public int getColumna() {
-        return columna; 
+        return columna;
     }
 
+    // Devuelve la fila (1-based).
     public int getFila() {
-        return fila; 
+        return fila;
     }
 }

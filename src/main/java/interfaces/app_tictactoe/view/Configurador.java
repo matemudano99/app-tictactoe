@@ -4,19 +4,21 @@ import interfaces.app_tictactoe.controller.TicTacToe;
 import javax.swing.*;
 import java.awt.*;
 
+// Ventana de configuración: recoge parámetros antes de iniciar la partida.
 public class Configurador extends JFrame {
 
     // Componentes de la UI
-    private JSpinner spinnerTamanio;
-    private JTextField txtNombreJugadorX;
-    private JTextField txtNombreJugadorO;
-    private JRadioButton radioTemaClaro;
-    private JRadioButton radioTemaOscuro;
-    private ButtonGroup grupoTema;
-    private JButton btnIniciar;
-    private JTextField txtSimboloJugadorX;
-    private JTextField txtSimboloJugadorO;
+    final private JSpinner spinnerTamanio;
+    final private JTextField txtNombreJugadorX;
+    final private JTextField txtNombreJugadorO;
+    final private JRadioButton radioTemaClaro;
+    final private JRadioButton radioTemaOscuro;
+    final private ButtonGroup grupoTema;
+    final private JButton btnIniciar;
+    final private JTextField txtSimboloJugadorX;
+    final private JTextField txtSimboloJugadorO;
 
+    // Construye la UI de configuración y sus componentes.
     public Configurador() {
         setTitle("Configuración de Tic-Tac-Toe");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
@@ -77,6 +79,7 @@ public class Configurador extends JFrame {
         btnIniciar.addActionListener(e -> onIniciarJuego());
     }
 
+    // Lee los campos, valida y lanza una nueva partida si todo es válido.
     private void onIniciarJuego() {
         // 1. Recopilar datos
         int tamanio = (int) spinnerTamanio.getValue();

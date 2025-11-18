@@ -37,7 +37,7 @@ public class Configurador extends JFrame {
 
         // 2. Jugador 1 Nombre
         panelFormulario.add(new JLabel("Nombre Jugador 1:"));
-        txtNombreJugadorX = new JTextField("Jugador X");
+        txtNombreJugadorX = new JTextField("Jugador 1");
         panelFormulario.add(txtNombreJugadorX);
 
         // 3. Jugador 1 Símbolo
@@ -47,7 +47,7 @@ public class Configurador extends JFrame {
 
         // 4. Jugador 2 Nombre
         panelFormulario.add(new JLabel("Nombre Jugador 2:"));
-        txtNombreJugadorO = new JTextField("Jugador O");
+        txtNombreJugadorO = new JTextField("Jugador 2");
         panelFormulario.add(txtNombreJugadorO);
         
         // 5. Jugador 2 Símbolo

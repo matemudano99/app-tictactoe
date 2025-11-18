@@ -11,10 +11,10 @@ public class Vista extends JFrame {
     public Vista(int tamanio, String tema) {
         this.setTitle("TicTacToe");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(true);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         // Altura aumentada a 500 para el botón "Nueva Partida"
-        this.setSize(400, 500); 
+        this.setSize(400, 600); 
         
         ImageIcon icon = new ImageIcon("./img/cuadricula.png");
         this.setIconImage(icon.getImage());

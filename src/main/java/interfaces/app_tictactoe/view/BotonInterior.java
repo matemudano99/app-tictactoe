@@ -12,9 +12,9 @@ public class BotonInterior extends JButton {
     BotonInterior(int fila, int columna, String tema) {
         this.fila = fila;
         this.columna = columna;
-
         this.setSize(300, 300);
-        this.setFont(new Font("monospaced", Font.BOLD, 70));
+
+        this.setFont(new Font("monospaced", Font.BOLD, 50));
         this.setFocusable(false);
 
         if (tema.equals("OSCURO")) {

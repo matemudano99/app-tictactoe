@@ -144,7 +144,7 @@ public class TicTacToe {
     private void actualizarEtiquetaTurno() {
         String nombre = JUGADORES[TURNO.toca()].getNombre();
         String simbolo = String.valueOf(JUGADORES[TURNO.toca()].getSimbolo());
-        VISTA.getPanelInformativo().setTextoEtiqueta("Turno de: " + nombre + " (" + simbolo + ")");
+        VISTA.getPanelInformativo().setTextoEtiqueta("Turno: " + nombre + " (" + simbolo + ")");
     }
 
     /**

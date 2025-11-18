@@ -22,7 +22,7 @@ public class PanelPrincipal extends JPanel {
             this.setBackground(new Color(50, 50, 50));
             this.setBorder(new EmptyBorder(10, 10, 10, 10));
         } else {
-            this.setBackground(new Color(230,230,230));
+            this.setBackground(new Color(230, 230, 230));
             this.setBorder(new EmptyBorder(10, 10, 10, 10));
         }
 
@@ -31,7 +31,7 @@ public class PanelPrincipal extends JPanel {
         for (int i = 0; i < tamanio; i++) {
             for (int j = 0; j < tamanio; j++) {
                 // Pasa el 'tema' al botón
-                botones[i][j] = new BotonInterior(i, j, tema);
+                botones[i][j] = new BotonInterior(i, j, tema, tamanio);
                 this.add(botones[i][j]);
             }
         }
@@ -51,7 +51,7 @@ public class PanelPrincipal extends JPanel {
 
             // Asegurarse de que esté dentro de los límites (aunque no debería fallar)
             if (fila >= 0 && fila < botones.length && col >= 0 && col < botones[0].length) {
-                botones[fila][col].setBackground(Color.GREEN);
+                botones[fila][col].setBackground(new Color(100, 200, 100));
             }
         }
     }

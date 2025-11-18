@@ -9,12 +9,13 @@ public class BotonInterior extends JButton {
     private int columna;
 
     // Crea un botón de celda con posición y tema (claro/oscuro).
-    BotonInterior(int fila, int columna, String tema) {
+    BotonInterior(int fila, int columna, String tema, int tamanio) {
         this.fila = fila;
         this.columna = columna;
         this.setSize(300, 300);
 
-        this.setFont(new Font("monospaced", Font.BOLD, 50));
+        // utiliza la fuente para ser inversamente proporcional al tamaño del tablero
+        this.setFont(new Font("monospaced", Font.BOLD, 200 / tamanio));
         this.setFocusable(false);
 
         if (tema.equals("OSCURO")) {

@@ -1,5 +1,6 @@
 package interfaces.app_tictactoe.controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -44,23 +45,23 @@ public class TicTacToe {
     public TicTacToe(int tamanio, String nombreX, String nombreO, String tema, char simboloX, char simboloO) {
         this.tiempoRestante = TIEMPO_TURNO;
         this.tamanio = tamanio;
-        
+
         // Inicializa el Modelo
         this.TABLERO = new Tablero(this.tamanio);
         this.JUGADORES = new Jugador[] { new Jugador(simboloX, nombreX), new Jugador(simboloO, nombreO) };
         this.TURNO = new Turno();
-        
+
         // Inicializa la Vista
         this.VISTA = new Vista(this.tamanio, tema);
-        
+
         // Configura el temporizador
         this.inicializarTimer();
-        
+
         // Conecta la Vista y el Modelo
         actualizarEtiquetaTurno();
         this.agregarListenersBotones();
         this.agregarListenerNuevaPartida();
-        
+
         // Arranca el juego
         this.VISTA.setVisible(true);
         this.reiniciarYEmpezarTimer();
@@ -100,10 +101,9 @@ public class TicTacToe {
             if (exito) {
                 // Movimiento válido: detener el timer del turno actual
                 timer.stop();
-                
+
                 // Actualizar la Vista
                 boton.setText(String.valueOf(jugadorActivo.getSimbolo()));
-                boton.setEnabled(false);
 
                 // Comprobar estado del Modelo
                 String estado = TABLERO.verificarEstadoPartida(jugadorActivo.getSimbolo());
@@ -113,9 +113,12 @@ public class TicTacToe {
                     case Tablero.ESTADO_GANADOR -> {
                         List<Coordenada> celdas = TABLERO.getCeldasGanadoras();
                         VISTA.getPanelPrincipal().marcarGanador(celdas);
-                        String msgGanador = "¡Ha ganado " + jugadorActivo.getNombre() + " (" + jugadorActivo.getSimbolo() + ")!";
+                        String msgGanador = "¡Ha ganado " + jugadorActivo.getNombre() + " ("
+                                + jugadorActivo.getSimbolo() + ")!";
                         VISTA.getPanelInformativo().setTextoEtiqueta(msgGanador);
                         JOptionPane.showMessageDialog(VISTA, msgGanador);
+
+                        deshabilitarTablero();
                     }
                     case Tablero.ESTADO_EMPATE -> {
                         String msgEmpate = "¡Empate!";
@@ -137,6 +140,15 @@ public class TicTacToe {
         }
     }
 
+    private void deshabilitarTablero() {
+        BotonInterior[][] botones = VISTA.getPanelPrincipal().getBotones();
+        for (int i = 0; i < this.tamanio; i++) {
+            for (int j = 0; j < this.tamanio; j++) {
+                botones[i][j].setEnabled(false);
+            }
+        }
+    }
+
     /**
      * Actualiza la etiqueta de información en la Vista para mostrar
      * qué jugador tiene el turno actual.
@@ -153,11 +165,11 @@ public class TicTacToe {
      */
     private void agregarListenerNuevaPartida() {
         JButton botonNuevaPartida = VISTA.getPanelInformativo().getBtnNuevaPartida();
-        
+
         botonNuevaPartida.addActionListener(e -> {
             timer.stop(); // Detener el timer antes de cerrar
             VISTA.dispose();
-            
+
             // Abrir la ventana de configuración en el hilo de Swing
             SwingUtilities.invokeLater(() -> {
                 Configurador nuevoConfigurador = new Configurador();
@@ -174,7 +186,7 @@ public class TicTacToe {
         this.timer = new Timer(1000, (ActionEvent e) -> {
             tiempoRestante--;
             VISTA.getPanelInformativo().actualizarTiempo(tiempoRestante);
-            
+
             // Si se agota el tiempo, parar el timer y gestionar la pérdida de turno
             if (tiempoRestante <= 0) {
                 timer.stop();
@@ -182,7 +194,7 @@ public class TicTacToe {
             }
         });
     }
-    
+
     /**
      * Lógica a ejecutar cuando el timer de un jugador llega a 0.
      * Muestra un aviso, pasa el turno y reinicia el timer para el siguiente.
@@ -190,11 +202,11 @@ public class TicTacToe {
     private void gestionarTiempoAgotado() {
         String nombre = JUGADORES[TURNO.toca()].getNombre();
         JOptionPane.showMessageDialog(VISTA, "¡Tiempo agotado para " + nombre + "! Pierdes el turno.");
-        
+
         // Pasa al siguiente jugador
         TURNO.siguiente();
         actualizarEtiquetaTurno();
-        
+
         // Reinicia el timer para el nuevo turno
         reiniciarYEmpezarTimer();
     }
@@ -208,4 +220,11 @@ public class TicTacToe {
         VISTA.getPanelInformativo().actualizarTiempo(this.tiempoRestante);
         this.timer.restart();
     }
+
+    // devuelve el tamaño del tictactoe -> utilizado para cambiar la fuente del
+    // boton interior
+    public int getTamanio() {
+        return tamanio;
+    }
+
 }

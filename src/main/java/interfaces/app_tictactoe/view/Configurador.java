@@ -21,10 +21,10 @@ public class Configurador extends JFrame {
     // Construye la UI de configuración y sus componentes.
     public Configurador() {
         setTitle("Configuración de Tic-Tac-Toe");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 350); // Aumentado para los nuevos campos
-        setLocationRelativeTo(null); 
-        setLayout(new BorderLayout(10, 10)); 
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout(10, 10));
 
         JPanel panelFormulario = new JPanel(new GridLayout(0, 2, 10, 10));
         panelFormulario.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -49,7 +49,7 @@ public class Configurador extends JFrame {
         panelFormulario.add(new JLabel("Nombre Jugador 2:"));
         txtNombreJugadorO = new JTextField("Jugador 2");
         panelFormulario.add(txtNombreJugadorO);
-        
+
         // 5. Jugador 2 Símbolo
         panelFormulario.add(new JLabel("Símbolo Jugador 2:"));
         txtSimboloJugadorO = new JTextField("O");
@@ -58,7 +58,7 @@ public class Configurador extends JFrame {
         // 6. Tema
         panelFormulario.add(new JLabel("Tema Visual:"));
         radioTemaClaro = new JRadioButton("Claro");
-        radioTemaClaro.setSelected(true); 
+        radioTemaClaro.setSelected(true);
         radioTemaOscuro = new JRadioButton("Oscuro");
         grupoTema = new ButtonGroup();
         grupoTema.add(radioTemaClaro);
@@ -72,7 +72,7 @@ public class Configurador extends JFrame {
         JPanel panelBoton = new JPanel(new FlowLayout(FlowLayout.CENTER));
         btnIniciar = new JButton("Iniciar Juego");
         panelBoton.add(btnIniciar);
-        
+
         add(panelFormulario, BorderLayout.CENTER);
         add(panelBoton, BorderLayout.SOUTH);
 
@@ -91,29 +91,35 @@ public class Configurador extends JFrame {
 
         // 2. Validación (Nombres)
         if (nombreX.isEmpty() || nombreO.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Los nombres no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Los nombres no pueden estar vacíos.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (nombreX.equalsIgnoreCase(nombreO)) {
-            JOptionPane.showMessageDialog(this, "Los jugadores deben tener nombres diferentes.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Los jugadores deben tener nombres diferentes.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // 3. Validación (Símbolos)
         if (strSimboloX.isEmpty() || strSimboloO.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Los símbolos no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Los símbolos no pueden estar vacíos.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (strSimboloX.length() > 1 || strSimboloO.length() > 1) {
-             JOptionPane.showMessageDialog(this, "Los símbolos deben ser un solo carácter.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Los símbolos deben ser un solo carácter.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-         if (strSimboloX.equalsIgnoreCase(strSimboloO)) {
-            JOptionPane.showMessageDialog(this, "Los jugadores deben tener símbolos diferentes.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (strSimboloX.equalsIgnoreCase(strSimboloO)) {
+            JOptionPane.showMessageDialog(this, "Los jugadores deben tener símbolos diferentes.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (strSimboloX.equals(" ") || strSimboloO.equals(" ")) {
-            JOptionPane.showMessageDialog(this, "El símbolo no puede ser un espacio vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El símbolo no puede ser un espacio vacío.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -122,7 +128,7 @@ public class Configurador extends JFrame {
 
         // 4. Crear el juego con los 6 argumentos
         TicTacToe juego = new TicTacToe(tamanio, nombreX, nombreO, tema, simboloX, simboloO);
-        
+
         this.dispose();
     }
 }

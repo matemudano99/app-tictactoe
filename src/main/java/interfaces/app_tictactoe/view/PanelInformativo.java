@@ -1,9 +1,11 @@
 package interfaces.app_tictactoe.view;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelInformativo extends JPanel {
     private JLabel etiqueta;
@@ -14,6 +16,9 @@ public class PanelInformativo extends JPanel {
     public PanelInformativo(int tamanio, String tema) {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        // Padding del Panel principal
+        this.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         // Crear los labels
         this.etiquetaTamanio = new JLabel(tamanio + "x" + tamanio);
@@ -38,8 +43,9 @@ public class PanelInformativo extends JPanel {
         btnNuevaPartida.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnNuevaPartida.setFont(new Font("monospaced", Font.BOLD, 20));
         btnNuevaPartida.setFocusable(false);
-        // Ancho: 200px, Alto: 80px
-        btnNuevaPartida.setPreferredSize(new Dimension(100, 40));
+
+        // Padding interno del botón
+        EmptyBorder paddingBoton = new EmptyBorder(10, 25, 10, 25);
 
         // Lógica del Tema
         if (tema.equals("OSCURO")) {
@@ -47,18 +53,59 @@ public class PanelInformativo extends JPanel {
             etiqueta.setForeground(Color.WHITE);
             etiquetaTamanio.setForeground(Color.WHITE);
             etiquetaTiempo.setForeground(Color.WHITE);
-            btnNuevaPartida.setBackground(new Color(80, 80, 80));
+
+            // Colores base botón Oscuro
+            Color bgNormal = new Color(80, 80, 80);
+            Color bgHover = new Color(100, 100, 100);
+
+            btnNuevaPartida.setBackground(bgNormal);
             btnNuevaPartida.setForeground(Color.WHITE);
-            btnNuevaPartida.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+
+            // Borde compuesto
+            btnNuevaPartida.setBorder(new CompoundBorder(
+                    BorderFactory.createLineBorder(Color.DARK_GRAY),
+                    paddingBoton));
+
+            // Efecto Hover Oscuro
+            btnNuevaPartida.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    btnNuevaPartida.setBackground(bgHover);
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    btnNuevaPartida.setBackground(bgNormal);
+                }
+            });
+
         } else {
             // Tema CLARO
             this.setBackground(new Color(230, 230, 230));
             etiqueta.setForeground(Color.BLACK);
             etiquetaTamanio.setForeground(Color.BLACK);
             etiquetaTiempo.setForeground(Color.BLACK);
-            btnNuevaPartida.setBackground(Color.WHITE);
+
+            // Colores base botón Claro
+            Color bgNormal = Color.WHITE;
+            Color bgHover = new Color(220, 220, 220);
+
+            btnNuevaPartida.setBackground(bgNormal);
             btnNuevaPartida.setForeground(Color.BLACK);
-            btnNuevaPartida.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+            // Borde compuesto
+            btnNuevaPartida.setBorder(new CompoundBorder(
+                    BorderFactory.createLineBorder(Color.GRAY),
+                    paddingBoton));
+
+            // Efecto Hover Claro
+            btnNuevaPartida.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    btnNuevaPartida.setBackground(bgHover);
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    btnNuevaPartida.setBackground(bgNormal);
+                }
+            });
         }
 
         // Añadir componentes

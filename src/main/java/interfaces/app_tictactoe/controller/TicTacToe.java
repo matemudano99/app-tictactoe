@@ -113,8 +113,7 @@ public class TicTacToe {
                     case Tablero.ESTADO_GANADOR -> {
                         List<Coordenada> celdas = TABLERO.getCeldasGanadoras();
                         VISTA.getPanelPrincipal().marcarGanador(celdas);
-                        String msgGanador = "¡Ha ganado " + jugadorActivo.getNombre() + " ("
-                                + jugadorActivo.getSimbolo() + ")!";
+                        String msgGanador = "¡Ha ganado " + jugadorActivo.getNombre() + "!";
                         VISTA.getPanelInformativo().setTextoEtiqueta(msgGanador);
                         JOptionPane.showMessageDialog(VISTA, msgGanador);
 
